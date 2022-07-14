@@ -1,4 +1,4 @@
-package me.myself.i.javatask_webclient;
+package me.myself.i.javatask_webclient.first;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
