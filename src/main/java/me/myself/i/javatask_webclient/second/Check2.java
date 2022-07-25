@@ -1,30 +1,30 @@
 package me.myself.i.javatask_webclient.second;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Check2 {
 
     public static void main(String[] args) {
 
-        WebClientService2 y = new WebClientService2();
-        List<Character2> showList = new LinkedList<>();
+        WebClientService2 webClient = new WebClientService2();
+        List<Character2> showList = new ArrayList<>();
 
         String url = "https://rickandmortyapi.com/api/character";
-        Info2 infoList = y.getReallyAllCharacters(url).info();
+        RickAndMortyCharacterListResponse2 singlePage;
 
         do {
 
-            y.getReallyAllCharacters(url).results()
+            singlePage = webClient.getOneCharacterPage(url);
+
+            singlePage.results()
                     .stream()
                     .filter(e-> e.status().equals("Alive"))
                     .forEach(showList::add);
 
-            url = infoList.next();
-            infoList = y.getReallyAllCharacters(url).info();
+            url = singlePage.info().next();
 
-        } while(infoList.next() != null);
+        } while(url != null);
 
         showList.forEach(System.out::println);
     }
